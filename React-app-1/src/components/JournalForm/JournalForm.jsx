@@ -61,13 +61,18 @@ function JournalForm({onSubmit, deleteItem, data}) {
 		dispatchForm({type: "SUBMIT"});
 	};
 
+	const onDelete = () => {
+		dispatchForm({type: "CLEAR"});
+		deleteItem(data);
+	};
+
 	return (
 		<form action="" className={styles["journal-form"]} onSubmit={addJournalItem}>
 			<div className={styles["title-block"]}>
 				<Input onChange={changeValues} ref={titleRef} type="text" name="title" placeholder="Untitled"
 					value={values.title ? values.title : ""}
 					isValid={isValid.title} appearence={"title"}/>
-				<button className={styles["del-button"]} onClick={() => deleteItem(data)}>
+				<button type="button" className={styles["del-button"]} onClick={onDelete}>
 					<img className={styles["del-img"]} src="/delete.svg" alt="" />
 				</button>
 			</div>
