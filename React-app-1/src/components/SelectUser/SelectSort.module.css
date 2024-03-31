@@ -22,6 +22,7 @@
 }
 
 .slsect-item {
+    height: 30px;
     background-color: #1F1F1F;
     border: 1px solid #2b2b2b;
     color: #FFF;
