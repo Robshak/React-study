@@ -5,7 +5,7 @@ import { useEffect, useReducer, useRef } from "react";
 import cn from "classnames";
 import { INITIAL_STATE, formReducer } from "./JournalForm.state";
 
-function JournalForm({onSubmit, deleteItem, data}) {
+function JournalForm({onSubmit, deleteItem, data, setBodyState}) {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const {isValid, values, isFormReadyToSubmit} = formState;
 	const titleRef = useRef();
@@ -64,6 +64,8 @@ function JournalForm({onSubmit, deleteItem, data}) {
 	const onDelete = () => {
 		dispatchForm({type: "CLEAR"});
 		deleteItem(data);
+		data = undefined;
+		setBodyState(0);
 	};
 
 	return (

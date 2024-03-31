@@ -31,9 +31,11 @@ function App() {
 	};
 
 	const deleteItem = item => {
-		setItems(items.filter(i => {
-			return i.id !== item.id;
-		}));
+		if(item){
+			setItems(items.filter(i => {
+				return i.id !== item.id;
+			}));
+		}
 	};
 
 	return (
@@ -49,7 +51,7 @@ function App() {
 				</LeftPanel>
 				<Body>
 					<JournalForm onSubmit={bodyState ? changeItem : addItem}
-						deleteItem={deleteItem}
+						deleteItem={deleteItem} setBodyState={setBodyState}
 						data={items.find(i => i.id == bodyState)}></JournalForm>
 				</Body>
 			</div>
