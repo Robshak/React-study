@@ -1,14 +1,18 @@
 .card-button {
-    width: 400px;
-    padding: 20px;
+    width: 100%;
     border-radius: 3px;
     background: #FFFFFF08;
     border: none;
     color: #FFF;
     text-align: start;
     display: block;
+    padding: 0px;
 }
 
-.card-button:hover{
+.card-button:hover {
     background: #FFFFFF1A;
+}
+
+.card-button:active {
+    background: rgba(255, 255, 255, 0.137)
 }

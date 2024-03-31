@@ -1,0 +1,3 @@
+.body {
+    width: calc(100% - 400px - 50px);
+}

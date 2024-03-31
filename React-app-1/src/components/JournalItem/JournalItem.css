@@ -1,16 +1,23 @@
-.journal-itme__header{
+.journal-item {
+    padding: 20px !important;
+}
+
+.journal-item__header {
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
     font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.journal-itme__body{
+.journal-item__body {
     display: flex;
     gap: 10px;
 }
 
-.journal-item__date{
+.journal-item__date {
     font-size: 16px;
     font-weight: 400;
     line-height: 20.11px;
@@ -18,11 +25,15 @@
     color: #FFFFFF66;
 }
 
-.journal-item__text{
+.journal-item__text {
     font-size: 16px;
     font-weight: 400;
     line-height: 20.11px;
     font-style: normal;
     color: #FFFFFF99;
     overflow: hidden;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

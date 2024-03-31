@@ -1,0 +1,39 @@
+.select-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.select-button {
+    width: 100%;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+}
+
+.select-block {
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    background-color: #1F1F1F;
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px */
+}
+
+.slsect-item {
+    background-color: #1F1F1F;
+    border: 1px solid #2b2b2b;
+    color: #FFF;
+}
+
+.slsect-item:hover {
+    background-color: #303030;
+}
+
+.slsect-item:active {
+    background-color: #363636;
+}
+
+.show-block {
+    display: none !important;
+}

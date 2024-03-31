@@ -1,34 +1,59 @@
 import "./App.css";
-import Button from "./components/Button/Button";
-import JournalItem from "./components/JournalItem/JournalItem";
-import CardButton from "./components/CardButton/CardButton";
+import JournalList from "./components/JournalList/JournalList";
+import JournalAddButton from "./components/JournalAddButton/JournalAddButton";
+import LeftPanel from "./layouts/LeftPanel/LeftPanel";
+import Header from "./components/Header/Header";
+import Body from "./layouts/Body/Body";
+import JournalForm from "./components/JournalForm/JournalForm";
+import { useLocalStorage } from "./hooks/use-localstorage.hook";
+import { SortContextProvider } from "./context/sortContext";
+import SelectSort from "./components/SelectUser/SelectSort";
+import { useState } from "react";
 
 function App() {
-	const data = [
-		{
-			title: "Подготовка к обновлению курсов",
-			date: new Date(),
-			text: "Сегодня провёл весь день за..."
-		},
-		{
-			title: "pofkvdpfkjgG",
-			date: new Date(),
-			text: "Сегодня провёл весь день за..."
-		}
-	];
+	const [items, setItems] = useLocalStorage("data");
+	const [bodyState, setBodyState] = useState(0);
+
+	const addItem = item => {
+		setItems([...items, {
+			...item,
+			id: (items.length == 0 ? 1 : Math.max(...items.map(i => i.id)) + 1)
+		}]);
+	};
+
+	const changeItem = item => {
+		setItems(items.map(i => {
+			if(i.id == item.id){
+				i = item;
+			}
+			return i;
+		}));
+	};
+
+	const deleteItem = item => {
+		setItems(items.filter(i => {
+			return i.id !== item.id;
+		}));
+	};
 
 	return (
-		<>
-			<div>Project</div>
-			<Button></Button>
-			<CardButton>Test button</CardButton>
-			<CardButton>
-				<JournalItem data={data[0]}></JournalItem>
-			</CardButton>
-			<CardButton>
-				<JournalItem data={data[1]}></JournalItem>
-			</CardButton>
-		</>
+		<SortContextProvider>
+			<div className="app">
+				<LeftPanel>
+					<Header></Header>
+					<div className="journal-button-block">
+						<JournalAddButton setBodyState={setBodyState}></JournalAddButton>
+						<SelectSort></SelectSort>
+					</div>
+					<JournalList items={items} setBodyState={setBodyState}></JournalList>
+				</LeftPanel>
+				<Body>
+					<JournalForm onSubmit={bodyState ? changeItem : addItem}
+						deleteItem={deleteItem}
+						data={items.find(i => i.id == bodyState)}></JournalForm>
+				</Body>
+			</div>
+		</SortContextProvider>
 	);
 }
 
